@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 
 const App = () => {
-  const [thickness, setThickness] = React.useState(null);
-  const [folds, setFolds] = React.useState(null);
+  const [thickness, setThickness] = React.useState("");
+  const [folds, setFolds] = React.useState("");
   const [lengths, setLengths] = React.useState([]);
-  const [diferents, setDiferents] = React.useState(null);
+  const [diferents, setDiferents] = React.useState(0);
   const [resultSegmentos, setResultSegmentos] = React.useState(0);
   const [resultAngulo, setResultAngulo] = React.useState(0);
 
@@ -17,6 +17,11 @@ const App = () => {
     const calculateResultAngulo = (folds - diferents) * 2 * thickness;
     setResultAngulo(calculateResultAngulo);
   }, [folds, diferents, thickness]);
+
+  const handleInputChange = (setter) => (e) => {
+    const value = e.target.value.replace(",", ".");
+    setter(value);
+  };
 
   const calculateDevelopment = () => {
     const development = resultSegmentos - resultAngulo;
@@ -33,8 +38,9 @@ const App = () => {
           <input
             type="number"
             value={thickness}
-            onChange={(e) => setThickness(parseFloat(e.target.value))}
+            onChange={handleInputChange(setThickness)}
             className="w-[100px] mb-4 p-2 border border-gray-300 rounded-lg"
+            step="any"
           />
         </div>
 
@@ -43,8 +49,9 @@ const App = () => {
           <input
             type="number"
             value={folds}
-            onChange={(e) => setFolds(parseInt(e.target.value))}
+            onChange={handleInputChange(setFolds)}
             className="w-[100px] mb-4 p-2 border border-gray-300 rounded-lg"
+            step="any"
           />
         </div>
 
@@ -53,8 +60,9 @@ const App = () => {
           <input
             type="number"
             value={diferents}
-            onChange={(e) => setDiferents(parseInt(e.target.value))}
+            onChange={handleInputChange(setDiferents)}
             className="w-[100px] mb-4 p-2 border border-gray-300 rounded-lg"
+            step="any"
           />
         </div>
 
@@ -65,9 +73,10 @@ const App = () => {
               type="number"
               value={length}
               onChange={(e) =>
-                setLengths(lengths.map((len, i) => (i === index ? e.target.value : len)))
+                setLengths(lengths.map((len, i) => (i === index ? e.target.value.replace(",", ".") : len)))
               }
               className="w-[80px] p-2 border border-gray-300 rounded-lg"
+              step="any"
             />
           </div>
         ))}
