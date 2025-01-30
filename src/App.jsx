@@ -34,7 +34,7 @@ const App = () => {
         <h1 className="text-2xl font-semibold mb-4 text-center">Calculadora de Desarrollo</h1>
 
         <div className="flex items-center gap-2">
-          <label className="block text-gray-700 mb-2 pb-2">Espesor:</label>
+          <label className="block text-gray-700 mb-2 pb-2">Espesor</label>
           <input
             type="number"
             value={thickness}
@@ -45,7 +45,7 @@ const App = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <label className="text-gray-700 pb-4">Nº Pliegues:</label>
+          <label className="text-gray-700 pb-4">Nº Pliegues</label>
           <input
             type="number"
             value={folds}
@@ -89,8 +89,8 @@ const App = () => {
         </button>
 
         <p className="text-gray-700 mt-4">
-          Se trata de una pieza de {folds} pliegues de 90º y {diferents} diferente a 90º, con un espesor de{" "}
-          {thickness}mm y un desarrollo de {calculateDevelopment()}mm.
+          Se trata de una pieza de <span className="font-bold text-lg text-blue-600">{folds}</span> pliegues de 90º y <span className="font-bold text-lg text-blue-600">{diferents}</span> diferente a 90º, con un espesor de{" "}
+          <span className="font-bold text-lg text-blue-600">{thickness}mm</span> y un desarrollo de <span className="font-bold text-lg text-blue-600">{calculateDevelopment()}mm.</span>
         </p>
       </div>
     </div>
